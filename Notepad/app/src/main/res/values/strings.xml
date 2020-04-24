@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Notepad</string>
+
+    <!--  Activities  -->
+    <string name="tvNotepadDescription">Custom User Text</string>
+    <string name="tvDate">Last updated: %s</string>
+    <string name="tvNoteText">User note</string>
+
+    <!--  Hints  -->
+    <string name="tiletNotepadDescription">User note</string>
+    <string name="tiletNoteText">User note</string>
+
+
+</resources>
