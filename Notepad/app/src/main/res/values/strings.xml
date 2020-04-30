@@ -2,7 +2,7 @@
     <string name="app_name">Notepad</string>
 
     <!--  Activities  -->
-    <string name="tvNotepadDescription">Custom User Text</string>
+    <string name="tvNoteTitle">Custom User Text</string>
     <string name="tvDate">Last updated: %s</string>
     <string name="tvNoteText">User note</string>
 
