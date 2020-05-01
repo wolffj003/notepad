@@ -1,8 +1,8 @@
+package com.example.notepad.db
+
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.notepad.db.Converters
-import com.example.notepad.db.NoteDao
 import com.example.notepad.model.Note
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
