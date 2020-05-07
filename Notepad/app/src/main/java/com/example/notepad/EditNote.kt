@@ -13,60 +13,61 @@ import java.util.*
 
 class EditNote : AppCompatActivity() {
 
-    private lateinit var editNoteViewModel: EditNoteViewModel
+    private lateinit var editViewModel: EditNoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_note)
 
+        supportActionBar?.title = "Edit Notes"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         initViews()
-        initViewModels()
+        initViewModel()
     }
 
     private fun initViews() {
         fabSaveNote.setOnClickListener {
 
-            editNoteViewModel.notes.value?.apply {
+            editViewModel.notes.value?.apply {
                 notesTitle = tiletNoteTitle.text.toString()
                 notesLastUpdated = Date()
                 notesText = tiletNoteText.text.toString()
             }
 
-            editNoteViewModel.updateNotes()
+            editViewModel.updateNotes()
         }
     }
 
-    private fun initViewModels() {
-        editNoteViewModel = ViewModelProvider(this).get(editNoteViewModel::class.java)
-        editNoteViewModel.notes.value = intent.extras?.getParcelable(EXTRA_NOTE)!!
+    private fun initViewModel() {
+        editViewModel = ViewModelProvider(this).get(EditNoteViewModel::class.java)
+        editViewModel.notes.value = intent.extras?.getParcelable(EXTRA_NOTE)!!
 
-        editNoteViewModel.notes.observe(this, Observer { notes ->
+        editViewModel.notes.observe(this, Observer { notes ->
             if (notes != null) {
                 tiletNoteTitle.setText(notes.notesTitle)
                 tiletNoteText.setText(notes.notesText)
             }
         })
 
-        editNoteViewModel.error.observe(this, Observer { message ->
+        editViewModel.error.observe(this, Observer { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         })
 
-        editNoteViewModel.success.observe(this, Observer { success ->
+        editViewModel.success.observe(this, Observer { success ->
             if (success) finish()
         })
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {  // Backbutton ff fixen
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
-            android.R.id.home -> {
+            android.R.id.home -> { // Used to identify when the user has clicked the back button
                 finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 
     companion object {
         const val EXTRA_NOTE = "EXTRA_NOTE"

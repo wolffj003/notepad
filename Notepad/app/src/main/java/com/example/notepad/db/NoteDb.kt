@@ -1,6 +1,7 @@
 package com.example.notepad.db
 
 import android.content.Context
+import android.provider.Settings.Global.getString
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.notepad.model.Notes
@@ -14,6 +15,8 @@ import java.util.*
 abstract class NoteDb : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
+
+    val welcomeMsg = R.string.welcomeMsg
 
     companion object {
         private const val DATABASE_NAME = "NOTES_DATABASE"
@@ -36,7 +39,7 @@ abstract class NoteDb : RoomDatabase() {
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
                                             database.noteDao().insertNotes(Notes(
-                                                notesTitle = "Title",
+                                                notesTitle = welcomeMsg,
                                                 notesLastUpdated = Date(),
                                                 notesText = "")
                                             )
