@@ -2,7 +2,8 @@ package com.example.notepad.db
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.notepad.model.Note
+import androidx.lifecycle.MutableLiveData
+import com.example.notepad.model.Notes
 
 class NoteRepository(context: Context) {
 
@@ -13,11 +14,11 @@ class NoteRepository(context: Context) {
         noteDao = database!!.noteDao()
     }
 
-    fun getNotes(): LiveData<Note?> {
+    fun getNotes(): LiveData<Notes?> {
         return noteDao.getNotes()
     }
 
-    suspend fun updateNotes(note: Note) {
-        noteDao.updateNotes(note)
+    suspend fun updateNotes(notes: Notes) {
+        noteDao.updateNotes(notes)
     }
 }

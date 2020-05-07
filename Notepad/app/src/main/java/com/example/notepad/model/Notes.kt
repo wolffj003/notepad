@@ -9,14 +9,14 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
-@Entity(tableName = "noteTable")
-data class Note(
+@Entity(tableName = "notesTable")
+data class Notes(
     @ColumnInfo(name = "title")
-    val noteTitle: String,
+    var notesTitle: String,
     @ColumnInfo(name = "text")
-    val noteText: String,
+    var notesText: String,
     @ColumnInfo(name = "lastupdated")
-    val noteLastUpdated: Date,
+    var notesLastUpdated: Date,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

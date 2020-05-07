@@ -3,13 +3,13 @@ package com.example.notepad.db
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.notepad.model.Note
+import com.example.notepad.model.Notes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Notes::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class NoteDb : RoomDatabase() {
 
@@ -35,10 +35,10 @@ abstract class NoteDb : RoomDatabase() {
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            database.noteDao().insertNotes(Note(
-                                                noteTitle = "Title",
-                                                noteLastUpdated = Date(),
-                                                noteText = "")
+                                            database.noteDao().insertNotes(Notes(
+                                                notesTitle = "Title",
+                                                notesLastUpdated = Date(),
+                                                notesText = "")
                                             )
                                         }
                                     }
